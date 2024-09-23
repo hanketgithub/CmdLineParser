@@ -15,13 +15,7 @@
 #include "CmdLineParser.h"
 
 using namespace std;
-//using callback = int (*)(int &i, string &arg);
-
-using callback = std::function<int (int &, string &arg, CONTEXT_T &ctx)>;
-
-
-CONTEXT_T ctx;
-
+using callback = std::function<int (int, string &arg, CONTEXT_T &ctx)>;
 
 map<string, callback> mp =
 {
@@ -30,7 +24,7 @@ map<string, callback> mp =
     { "-w", SetWidth },
     { "-h", SetHeight },
 
-    { "--version", [](int &i, string &, CONTEXT_T &ctx) {
+    { "--version", [](int loc, string &, CONTEXT_T &ctx) {
                         printf("Version: %d:%d\n", MAJOR_VER, MINOR_VER);
                         return 0;
                     }
@@ -44,6 +38,8 @@ int main(int argc, char *argv[])
         printf("Print Help menu\n");
         return 0;
     }
+
+    CONTEXT_T ctx{};
 
     for (int i = 1; i < argc; i++)
     {
@@ -59,7 +55,13 @@ int main(int argc, char *argv[])
         else
         {
             string next = i+1 < argc ? argv[i+1] : "";
-            mp[cur](i, next, ctx);
+
+            int res = mp[cur](i, next, ctx);
+            if (res == -1)
+            {
+                cout << cur << "error" << endl;
+            }
+            i += res;
         }
     }
 

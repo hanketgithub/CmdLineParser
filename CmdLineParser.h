@@ -21,12 +21,15 @@ typedef struct
     int height;
 } CONTEXT_T;
 
+/* Return number of arguments processed */
+int SetInput(int loc, std::string &next, CONTEXT_T &ctx);
 
-int SetInput(int &i, std::string &next, CONTEXT_T &ctx);
 
-int SetWidth(int &i, std::string &next, CONTEXT_T &ctx);
+int SetWidth(int loc, std::string &next, CONTEXT_T &ctx);
 
-int SetHeight(int &i, std::string &next, CONTEXT_T &ctx);
+
+int SetHeight(int loc, std::string &next, CONTEXT_T &ctx);
+
 
 void PrintContext(CONTEXT_T &ctx);
 

@@ -13,32 +13,33 @@
 
 using namespace std;
 
-int SetInput(int &i, string &next, CONTEXT_T &ctx)
+
+
+int SetInput(int i, string &next, CONTEXT_T &ctx)
 {
     ctx.input = next;
     i++;
 
-    return 0;
+    return 1;
 }
 
 
-int SetWidth(int &i, string &next, CONTEXT_T &ctx)
+int SetWidth(int i, string &next, CONTEXT_T &ctx)
 {
     int width = stoi(next);
     ctx.width = width;
 
     i++;
 
-    return 0;
+    return 1;
 }
 
-int SetHeight(int &i, string &next, CONTEXT_T &ctx)
+int SetHeight(int i, string &next, CONTEXT_T &ctx)
 {
     int height = stoi(next);
     ctx.height = height;
-    i++;
 
-    return 0;
+    return 1;
 }
 
 
