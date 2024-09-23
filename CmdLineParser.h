@@ -2,25 +2,33 @@
 //  CmdLineParser.h
 //  CmdLineParser
 //
-//  Created by Hank Lee on 2/15/19.
-//  Copyright (c) 2019 Hank Lee. All rights reserved.
+//  Created by Hank Lee on 9/20/24.
+//  Copyright (c) 2024 Hank Lee. All rights reserved.
 //
 
 #ifndef ___CmdLineParser___
 #define ___CmdLineParser___
 
-typedef enum
+
+#define MAJOR_VER   1
+#define MINOR_VER   0
+
+
+typedef struct
 {
-    APP_COMMAND_OPTION_WIDTH = 0,
-    APP_COMMAND_OPTION_HEIGHT,
-    APP_COMMAND_OPTION_MAX
-} APP_COMMAND_OPTION_E;
-
-typedef struct {
-    uint32_t width;
-    uint32_t height;
-} APP_COMMAND_PARAMETER_T;
+    std::string input;
+    int width;
+    int height;
+} CONTEXT_T;
 
 
-bool parse_command_parameter(int argc, char **argv, APP_COMMAND_PARAMETER_T *cmd_param_p);
+int SetInput(int &i, std::string &next, CONTEXT_T &ctx);
+
+int SetWidth(int &i, std::string &next, CONTEXT_T &ctx);
+
+int SetHeight(int &i, std::string &next, CONTEXT_T &ctx);
+
+void PrintContext(CONTEXT_T &ctx);
+
+
 #endif
